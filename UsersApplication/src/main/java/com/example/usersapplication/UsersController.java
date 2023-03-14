@@ -1,8 +1,6 @@
 package com.example.usersapplication;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 
@@ -15,13 +13,30 @@ public class UsersController {
         return "<samp><ul>Welcome to Users Database</ul><li>/user/{id}<li>/users</li></ul></samp>";
     }
 
-    @GetMapping("/user/{id}")
-    User getUserByID(@PathVariable int id) {
-        return db.getUser(id);
+    @PostMapping("/users")
+    String addUser(@RequestBody User user) {
+        /*
+          curl --location 'http://localhost:8080/users' \
+          --header 'Content-Type: application/json' \
+          --data '{
+              "name": "xyz",
+              "age": 25
+          }'
+        */
+        db.addUser(user);
+        return "User added successfully!";
     }
 
     @GetMapping("/users")
     HashMap<Integer, User> getAllUsers() {
+        // curl --location 'http://localhost:8080/users'
         return db.getUsers();
     }
+
+    @GetMapping("/user/{id}")
+    User getUserByID(@PathVariable int id) {
+        // curl --location 'http://localhost:8080/user/1'
+        return db.getUser(id);
+    }
+
 }

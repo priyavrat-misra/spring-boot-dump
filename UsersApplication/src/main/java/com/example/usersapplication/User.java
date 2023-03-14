@@ -3,6 +3,7 @@ package com.example.usersapplication;
 public class User {
     private String name;
     private int age;
+    static int id = 0;
 
     public String getName() {
         return name;
@@ -21,6 +22,7 @@ public class User {
     }
 
     User(String name, int age) {
+        ++id;
         this.name = name;
         this.age = age;
     }
