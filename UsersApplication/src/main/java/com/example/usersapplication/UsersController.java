@@ -1,5 +1,6 @@
 package com.example.usersapplication;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -10,18 +11,16 @@ public class UsersController {
 
     @GetMapping("/")
     String welcomeMessage() {
-        return "<samp><ul>Welcome to Users Database</ul><li>/user/{id}<li>/users</li></ul></samp>";
+        return "<samp><ul>Welcome to Users Database</ul><li>/users/{id}<li>/users</li></ul></samp>";
     }
 
     @PostMapping("/users")
+    @ResponseStatus(HttpStatus.CREATED)
     String addUser(@RequestBody User user) {
         /*
-          curl --location 'http://localhost:8080/users' \
+          curl --location 'http://localhost:1234/users' \
           --header 'Content-Type: application/json' \
-          --data '{
-              "name": "xyz",
-              "age": 25
-          }'
+          --data '{"name": "xyz", "age": 25}'
         */
         db.addUser(user);
         return "User added successfully!";
@@ -29,13 +28,13 @@ public class UsersController {
 
     @GetMapping("/users")
     HashMap<Integer, User> getAllUsers() {
-        // curl --location 'http://localhost:8080/users'
+        // curl --location 'http://localhost:1234/users'
         return db.getUsers();
     }
 
-    @GetMapping("/user/{id}")
+    @GetMapping("/users/{id}")
     User getUserByID(@PathVariable int id) {
-        // curl --location 'http://localhost:8080/user/1'
+        // curl --location 'http://localhost:1234/users/1'
         return db.getUser(id);
     }
 
