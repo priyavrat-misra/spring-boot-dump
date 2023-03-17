@@ -38,4 +38,11 @@ public class UsersController {
         return db.getUser(id);
     }
 
+    @DeleteMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.GONE)
+    String deleteUser(@PathVariable int id) {
+        db.deleteUser(id);
+        return "User deleted successfully!";
+    }
+
 }

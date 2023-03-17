@@ -23,5 +23,9 @@ public class UsersDB {
     HashMap<Integer, User> getUsers() {
         return table;
     }
+
+    void deleteUser(int id) {
+        table.remove(id);
+    }
     
 }
