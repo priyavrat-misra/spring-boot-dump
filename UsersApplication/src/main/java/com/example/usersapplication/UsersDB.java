@@ -24,8 +24,8 @@ public class UsersDB {
         return table;
     }
 
-    void deleteUser(int id) {
-        table.remove(id);
+    User deleteUser(int id) {
+        return table.remove(id);
     }
-    
+
 }

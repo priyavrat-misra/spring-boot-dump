@@ -1,7 +1,12 @@
 package com.example.usersapplication;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Positive;
+
 public class User {
+    @NotEmpty
     private String name;
+    @Positive
     private int age;
     static int id = 0;
 
