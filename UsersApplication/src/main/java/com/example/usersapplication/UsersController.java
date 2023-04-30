@@ -10,11 +10,13 @@ public class UsersController {
     UsersDB db = UsersDB.getInstance();
 
     @GetMapping("/")
+    // @RequestMapping(value = "/", method = RequestMethod.GET)
     String welcomeMessage() {
         return "<samp><ul>Welcome to Users Database</ul><li>/users/{id}<li>/users</li></ul></samp>";
     }
 
     @PostMapping("/users")
+    // @RequestMapping(value = "/users", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     String addUser(@RequestBody User user) {
         /*
